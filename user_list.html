@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>乐淘 - 后台管理</title>
-    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="./assets/nprogress/nprogress.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/public/assets/nprogress/nprogress.css">
+    <link rel="stylesheet" href="/public/css/index.css">
 </head>
 <body>
     
@@ -16,7 +16,7 @@
         <div class="profile">
             <!-- 头像 -->
             <div class="avatar img-circle">
-                <img src="./uploads/avatar.jpg">
+                <img src="/uploads/avatar.jpg">
             </div>
             <h4>布头儿</h4>
         </div>
@@ -127,25 +127,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>某某某</td>
-                                <td>否</td>
-                                <td>15901256171</td>
-                                <td>
-                                    <a href="javascript:;" class="btn btn-warning btn-xs">禁 用</a>
-                                </td>
-                            </tr>
+                        
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="./assets/jquery/jquery.min.js"></script>
-    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./assets/nprogress/nprogress.js"></script>
-    <script src="./js/common.js"></script>
+    <script type="text/template" id="list">
+       {{each rows}}
+        <tr>
+            <td>{{$index+1}}</td>
+            <td>{{$value.username}}</td>
+            <td>{{$value.mobile}}</td>
+            {{if($value.isDelete == 1)}}
+            <td>是</td>
+            {{else}}
+            <td>否</td>
+            {{/if}}
+            <td data-id="{{$value.id}}" data-status="{{$value.isDelete}}">
+                {{if($value.isDelete == 1)}}
+                <a href="javascript:;" class="btn btn-info btn-xs">启 用</a>
+                {{else}}
+                <a href="javascript:;" class="btn btn-warning btn-xs">禁 用</a>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+    <script src="/public/js/require.js"></script>
+    <script src="/public/js/config.js"></script>
+    <script>
+       require(['src/userlist']);
+    </script>
 </body>
 </html>

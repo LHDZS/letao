@@ -1,6 +1,6 @@
 
 define(['jquery'], function ($) {
-
+	//判断是否登录
 	$.ajax({
 	    url:'/api/employee/checkRootLogin',
 	    type:'get',
@@ -10,7 +10,7 @@ define(['jquery'], function ($) {
 	        }
 	    }
 	})
-
+	//退出登录
 	$('.logout').on('click',function () {
 		$.ajax({
 			url:'/api/employee/employeeLogout',
@@ -23,5 +23,9 @@ define(['jquery'], function ($) {
 		})
 	})
 
-	
+	$('.fenlei').on('click',function () {
+		// $('.list-unstyled').show();
+		$(this).next().slideToggle();
+	})
+
 })
